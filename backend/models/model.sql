@@ -1,0 +1,26 @@
+CREATE TABLE User (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    email TEXT,
+    name TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Conversation (
+    id INTEGER PRIMARY KEY,
+    type TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Participant (
+    id INTEGER PRIMARY KEY,
+    user_id INTEGER,
+    conversation_id INTEGER
+);
+
+CREATE TABLE Message (
+	id INTEGER PRIMARY KEY,
+	conversation_id INTEGER,
+	sender_id INTEGER,
+	content TEXT,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)

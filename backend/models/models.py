@@ -2,6 +2,9 @@ from sqlalchemy import Column, Integer, String, DateTime
 from db import Base
 
 class User(Base):
+    """
+    user who's chatting
+    """
     __tablename__ = 'User'
 
     id = Column(Integer, primary_key=True)
@@ -13,6 +16,10 @@ class User(Base):
         return f'<User {self.name}>'
     
 class Conversation(Base):
+    """
+    Conversation is more like a chat room, it can be one-on-one or group chat. 
+    It has a type to distinguish between them.
+    """
     __tablename__ = 'Conversation'
 
     id = Column(Integer, primary_key=True)
@@ -23,6 +30,10 @@ class Conversation(Base):
         return f'<Conversation {self.id}>'
     
 class Message(Base):
+    """
+    The message sent by users in a conversation. 
+    It has a reference to the conversation it belongs to, the sender and the content of the message.
+    """
     __tablename__ = 'Message'
 
     id = Column(Integer, primary_key=True)
@@ -35,6 +46,9 @@ class Message(Base):
         return f'<Message {self.id}>'
     
 class Participant(Base):
+    """
+    Validation check to ensure that a user is a participant of a conversation before they can send messages in it.
+    """
     __tablename__ = 'Participant'
 
     id = Column(Integer, primary_key=True)
